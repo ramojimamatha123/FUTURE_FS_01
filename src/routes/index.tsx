@@ -68,6 +68,14 @@ function Index() {
             <p className="mt-4 text-muted-foreground">A snapshot of my academic journey and what drives me.</p>
           </div>
           <div className="md:col-span-2 space-y-4">
+            <div className="rounded-2xl border border-border bg-card/50 p-6 space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Hi, I'm <span className="text-foreground font-medium">R. Mamatha</span>, currently pursuing my Master of Computer Applications (MCA) at Jawaharlal Nehru Technological University Hyderabad. I am passionate about software development and continuously improving my technical and problem-solving skills.
+              </p>
+              <p>
+                I have a strong interest in programming, web development, and database management. I enjoy learning new technologies and building projects that enhance my practical knowledge. My goal is to grow as a skilled software professional and contribute to innovative and impactful solutions in the IT industry.
+              </p>
+            </div>
             {[
               { d: "Pursuing", t: "MCA — 1st Year", s: "JNTU College of Engineering, Science & Technology, Hyderabad" },
               { d: "Graduated", t: "BSc (MPCs)", s: "Sarojini Naidu Vanita Maha Vidyalaya, Gandhi Bhavan, Nampally" },
