@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Download, Mail, Phone, Linkedin, Code2, Globe, GraduationCap, Briefcase, ArrowRight, X, Github, ExternalLink } from "lucide-react";
+import profilePhoto from "@/assets/mamatha.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -8,6 +9,14 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "R. Mamatha — MCA Student & Aspiring Developer" },
       { name: "description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad. Projects, skills, and downloadable resume." },
+      { property: "og:title", content: "R. Mamatha — MCA Student & Aspiring Developer" },
+      { property: "og:description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad. Projects, skills, and downloadable resume." },
+      { property: "og:image", content: profilePhoto },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "R. Mamatha — MCA Student & Aspiring Developer" },
+      { name: "twitter:description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad." },
+      { name: "twitter:image", content: profilePhoto },
     ],
   }),
 });
