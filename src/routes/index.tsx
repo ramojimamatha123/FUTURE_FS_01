@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Download, Mail, Phone, Linkedin, Code2, Globe, GraduationCap, Briefcase, ArrowRight, X, Github, ExternalLink } from "lucide-react";
+import profilePhoto from "@/assets/mamatha.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -8,6 +9,14 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "R. Mamatha — MCA Student & Aspiring Developer" },
       { name: "description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad. Projects, skills, and downloadable resume." },
+      { property: "og:title", content: "R. Mamatha — MCA Student & Aspiring Developer" },
+      { property: "og:description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad. Projects, skills, and downloadable resume." },
+      { property: "og:image", content: profilePhoto },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "R. Mamatha — MCA Student & Aspiring Developer" },
+      { name: "twitter:description", content: "Portfolio of R. Mamatha — MCA student, Java & web developer based in Hyderabad." },
+      { name: "twitter:image", content: profilePhoto },
     ],
   }),
 });
@@ -94,22 +103,37 @@ function Index() {
       <section id="home" className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-40"
           style={{ background: "radial-gradient(600px circle at 20% 20%, oklch(0.45 0.2 270 / 0.35), transparent 60%), radial-gradient(500px circle at 80% 30%, oklch(0.55 0.18 220 / 0.25), transparent 60%)" }} />
-        <div className="max-w-6xl mx-auto px-6 pt-24 pb-28">
-          <p className="text-indigo-400 text-sm tracking-widest uppercase mb-4">Portfolio</p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
-            Hi, I'm <span className="bg-gradient-to-r from-indigo-400 to-cyan-300 bg-clip-text text-transparent">R. Mamatha</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            MCA student, aspiring software developer with a love for Java, C/C++ and the web.
-            Currently building practical projects while studying at JNTU Hyderabad.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href={RESUME_URL} download className="inline-flex items-center gap-2 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-3 font-medium transition shadow-xl shadow-indigo-500/30">
-              <Download className="size-5" /> Download Resume
-            </a>
-            <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-border hover:bg-muted px-6 py-3 font-medium transition">
-              View Projects <ArrowRight className="size-4" />
-            </a>
+        <div className="max-w-6xl mx-auto px-6 pt-20 pb-28 grid md:grid-cols-[1fr_auto] gap-12 md:gap-16 items-center">
+          <div className="order-2 md:order-1">
+            <p className="text-indigo-400 text-sm tracking-widest uppercase mb-4">Portfolio</p>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
+              Hi, I'm <span className="bg-gradient-to-r from-indigo-400 to-cyan-300 bg-clip-text text-transparent">R. Mamatha</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+              MCA student, aspiring software developer with a love for Java, C/C++ and the web.
+              Currently building practical projects while studying at JNTU Hyderabad.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href={RESUME_URL} download className="inline-flex items-center gap-2 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-3 font-medium transition shadow-xl shadow-indigo-500/30">
+                <Download className="size-5" /> Download Resume
+              </a>
+              <a href="#projects" className="inline-flex items-center gap-2 rounded-full border border-border hover:bg-muted px-6 py-3 font-medium transition">
+                View Projects <ArrowRight className="size-4" />
+              </a>
+            </div>
+          </div>
+          <div className="order-1 md:order-2 mx-auto md:mx-0">
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-indigo-500/30 to-cyan-400/20 blur-2xl" aria-hidden="true" />
+              <div className="relative rounded-full p-1 bg-gradient-to-br from-indigo-400 to-cyan-300 shadow-2xl shadow-indigo-500/30">
+                <img
+                  src={profilePhoto}
+                  alt="R. Mamatha"
+                  loading="eager"
+                  className="block size-56 md:size-72 rounded-full object-cover bg-card"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
