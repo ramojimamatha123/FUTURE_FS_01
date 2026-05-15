@@ -172,12 +172,15 @@ function Index() {
       {/* Projects */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <h2 className="text-3xl font-bold tracking-tight">Projects</h2>
+        <p className="mt-3 text-muted-foreground">Click any project to view full details.</p>
         <div className="mt-10 grid md:grid-cols-2 gap-6">
-          {[
-            { t: "Student Management System", d: "A Java-based application to manage student records, enrollment and academic data with a clean module structure.", tags: ["Java", "OOP"] },
-            { t: "Number System Converter", d: "A C++ utility that converts numbers between binary, octal, decimal and hexadecimal systems.", tags: ["C++", "CLI"] },
-          ].map((p) => (
-            <article key={p.t} className="rounded-2xl border border-border p-6 bg-card/40 hover:bg-card transition">
+          {PROJECTS.map((p) => (
+            <button
+              key={p.t}
+              type="button"
+              onClick={() => setActive(p)}
+              className="text-left rounded-2xl border border-border p-6 bg-card/40 hover:bg-card hover:border-indigo-500/50 transition group focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+            >
               <div className="size-10 rounded-lg bg-indigo-500/10 text-indigo-400 grid place-items-center mb-4">
                 <Briefcase className="size-5" />
               </div>
@@ -188,10 +191,75 @@ function Index() {
                   <span key={t} className="text-xs px-2.5 py-1 rounded-full bg-muted text-muted-foreground">{t}</span>
                 ))}
               </div>
-            </article>
+              <span className="mt-5 inline-flex items-center gap-1 text-sm text-indigo-400 opacity-0 group-hover:opacity-100 transition">
+                View details <ArrowRight className="size-4" />
+              </span>
+            </button>
           ))}
         </div>
       </section>
+
+      {active && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+          onClick={() => setActive(null)}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border bg-card p-8 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActive(null)}
+              aria-label="Close"
+              className="absolute top-4 right-4 size-9 grid place-items-center rounded-full hover:bg-muted transition"
+            >
+              <X className="size-5" />
+            </button>
+            <div className="size-12 rounded-xl bg-indigo-500/10 text-indigo-400 grid place-items-center mb-5">
+              <Briefcase className="size-6" />
+            </div>
+            <h3 id="project-modal-title" className="text-2xl md:text-3xl font-bold tracking-tight">{active.t}</h3>
+            <p className="mt-4 text-muted-foreground leading-relaxed">{active.long}</p>
+
+            <h4 className="mt-8 text-sm uppercase tracking-wider text-muted-foreground">Key Features</h4>
+            <ul className="mt-3 space-y-2">
+              {active.features.map((f) => (
+                <li key={f} className="flex gap-3 text-sm">
+                  <span className="mt-2 size-1.5 rounded-full bg-indigo-400 shrink-0" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="mt-8 text-sm uppercase tracking-wider text-muted-foreground">Tech Stack</h4>
+            <div className="mt-3 flex gap-2 flex-wrap">
+              {active.stack.map((s) => (
+                <span key={s} className="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">{s}</span>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {active.github && (
+                <a href={active.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border hover:bg-muted px-5 py-2.5 text-sm font-medium transition">
+                  <Github className="size-4" /> View Code
+                </a>
+              )}
+              {active.demo && (
+                <a href={active.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white px-5 py-2.5 text-sm font-medium transition">
+                  <ExternalLink className="size-4" /> Live Demo
+                </a>
+              )}
+              {!active.github && !active.demo && (
+                <p className="text-sm text-muted-foreground">Links coming soon.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Resume CTA */}
       <section id="resume" className="max-w-6xl mx-auto px-6 py-20">
