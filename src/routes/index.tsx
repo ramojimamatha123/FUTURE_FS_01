@@ -14,7 +14,60 @@ export const Route = createFileRoute("/")({
 
 const RESUME_URL = "/Mamatha_Resume.pdf";
 
+type Project = {
+  t: string;
+  d: string;
+  tags: string[];
+  long: string;
+  features: string[];
+  stack: string[];
+  github?: string;
+  demo?: string;
+};
+
+const PROJECTS: Project[] = [
+  {
+    t: "Student Management System",
+    d: "A Java-based application to manage student records, enrollment and academic data with a clean module structure.",
+    long: "A desktop-style Student Management System built with Java that helps administrators manage student records, course enrollment and academic performance. Designed with an object-oriented module structure so each concern (students, courses, grades) is easy to extend.",
+    features: [
+      "Add, update, search and delete student records",
+      "Course enrollment and grade tracking",
+      "Modular OOP architecture for easy extension",
+      "Persistent data handling with file/DB storage",
+    ],
+    stack: ["Java", "OOP", "JDBC", "Swing"],
+    tags: ["Java", "OOP"],
+  },
+  {
+    t: "Number System Converter",
+    d: "A C++ utility that converts numbers between binary, octal, decimal and hexadecimal systems.",
+    long: "A lightweight command-line C++ utility that converts numbers between binary, octal, decimal and hexadecimal systems. Built to strengthen fundamentals in number theory, input validation and clean CLI design.",
+    features: [
+      "Convert across binary, octal, decimal, hexadecimal",
+      "Robust input validation and error messages",
+      "Menu-driven CLI interface",
+      "Lightweight with zero dependencies",
+    ],
+    stack: ["C++", "STL", "CLI"],
+    tags: ["C++", "CLI"],
+  },
+];
+
 function Index() {
+  const [active, setActive] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [active]);
+
   return (
     <div className="dark min-h-screen bg-background text-foreground antialiased">
       {/* Nav */}
